@@ -23,6 +23,11 @@ npm run build
 npm run preview
 ```
 
+Backend integration
+
+This scaffold posts sign-up requests to your backend at `POST /signup` (configured via `VITE_API_URL`).
+For production you can front a Lambda/API Gateway endpoint with CloudFront and use Cognito for authentication.
+
 Files added
 
 - `index.html` — app shell

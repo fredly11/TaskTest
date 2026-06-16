@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import { signUp } from '../services/auth'
+import { signUp, createUser } from '../services/auth'
 
 function passwordStrength(pw){
   if(!pw) return { score:0, label:'', color:'' }
@@ -44,7 +44,8 @@ export default function SignUp(){
     if(v){ setError(v); return }
     setLoading(true)
     try{
-      const res = await signUp({ fullName, email, password, tenant })
+      // Call the registration Lambda endpoint which provisions tenant and user
+      const res = await createUser({ email, password, tenantName: tenant, fullName })
       setSuccess(res.message || 'Account created — check your email to verify')
       setFullName(''); setEmail(''); setPassword(''); setConfirm(''); setTenant(''); setAgree(false)
     }catch(err){
