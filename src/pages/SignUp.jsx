@@ -1,5 +1,8 @@
-import React, { useState, useMemo } from 'react'
-import { signUp, createUser } from '../services/auth'
+import React, { useEffect, useState, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
+import { createUser } from '../services/auth'
+import { buildCognitoUrl } from '../lib/cognito'
 
 function passwordStrength(pw){
   if(!pw) return { score:0, label:'', color:'' }
@@ -14,6 +17,8 @@ function passwordStrength(pw){
 }
 
 export default function SignUp(){
+  const auth = useAuth()
+  const navigate = useNavigate()
   const [fullName,setFullName] = useState('')
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
@@ -23,6 +28,12 @@ export default function SignUp(){
   const [loading,setLoading] = useState(false)
   const [error,setError] = useState(null)
   const [success,setSuccess] = useState(null)
+
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      navigate('/')
+    }
+  }, [auth.isAuthenticated, navigate])
 
   const pwInfo = useMemo(()=>passwordStrength(password), [password])
 
@@ -44,7 +55,6 @@ export default function SignUp(){
     if(v){ setError(v); return }
     setLoading(true)
     try{
-      // Call the registration Lambda endpoint which provisions tenant and user
       const res = await createUser({ email, password, tenantName: tenant, fullName })
       setSuccess(res.message || 'Account created — check your email to verify')
       setFullName(''); setEmail(''); setPassword(''); setConfirm(''); setTenant(''); setAgree(false)
@@ -53,12 +63,22 @@ export default function SignUp(){
     }finally{ setLoading(false) }
   }
 
+  const handleCognitoSignup = () => {
+    window.location.href = buildCognitoUrl('signup')
+  }
+
   return (
     <section className="section">
       <div className="container" style={{maxWidth:560}}>
         <div className="card card-form">
           <h2>Create your account</h2>
-          <p className="muted">Sign up to create your workspace and invite your team.</p>
+          <p className="muted">Use AWS Cognito hosted sign-up to onboard quickly, or continue with the existing registration form.</p>
+
+          <button type="button" className="btn-primary full" onClick={handleCognitoSignup}>
+            Sign up with Cognito
+          </button>
+
+          <div className="divider">or</div>
 
           <form onSubmit={handleSubmit} className="form">
             <div className="field">
