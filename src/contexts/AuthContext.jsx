@@ -33,6 +33,7 @@ function getUserFromIdToken(idToken) {
   const payload = decodeJwt(idToken)
   if (!payload) return null
   return {
+    id: payload.sub,
     username:
       payload['cognito:username'] ||
       payload.preferred_username ||

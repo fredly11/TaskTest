@@ -3,7 +3,7 @@
 // Lightweight auth service that posts to your backend API (API Gateway -> Lambda).
 // Configure `VITE_API_URL` to your API endpoint.
 
-const API_BASE = import.meta.env.VITE_API_URL || ''
+const API_BASE = import.meta.env.VITE_API_URL || 'https://uqqb3xc36i.execute-api.us-east-2.amazonaws.com/dev'
 
 export async function signUp({ fullName, email, password, tenant }){
   const res = await fetch(`${API_BASE}/signup`, {

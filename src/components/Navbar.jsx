@@ -15,6 +15,8 @@ export default function Navbar() {
           <NavLink to="/contact" className={({isActive})=> isActive? 'active':''}>Contact</NavLink>
           {auth.isAuthenticated ? (
             <>
+              <NavLink to="/teams" className={({isActive})=> isActive? 'active':''}>Teams</NavLink>
+              <NavLink to="/lists" className={({isActive})=> isActive? 'active':''}>Lists</NavLink>
               <span className="navbar-user">Signed in as {auth.user.username}</span>
               <button type="button" className="btn-link" onClick={auth.signOut}>Sign out</button>
             </>
