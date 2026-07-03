@@ -7,14 +7,14 @@ export const getRedirectUri = () => {
   if (window.location.hostname === 'localhost') {
     return 'http://localhost:5173/callback'
   }
-  return `${window.location.origin}/callback`
+  return 'https://d2ti07h3wypom8.cloudfront.net/callback'
 }
 
 export const getLogoutUri = () => {
   if (window.location.hostname === 'localhost') {
     return 'http://localhost:5173'
   }
-  return window.location.origin
+  return 'https://d2ti07h3wypom8.cloudfront.net'
 }
 
 export const buildCognitoUrl = (mode = "login") => {
