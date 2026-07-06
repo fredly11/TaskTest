@@ -88,7 +88,7 @@ VITE_COGNITO_DOMAIN=https://your-domain.auth.region.amazoncognito.com
 VITE_CLIENT_ID=your_cognito_app_client_id
 
 ### 3. Run locally
-Bashnpm run dev
+npm run dev
 
 ### 4. Build for production
 npm run build
