@@ -77,20 +77,23 @@ This project showcases my ability to:
 ## Local Development
 
 ### 1. Install dependencies
-```bash
+
 npm install
 
-2. Configure environment variables
+
+### 2. Configure environment variables
 Create .env in the root:
 envVITE_API_URL=https://your-api-id.execute-api.region.amazonaws.com/dev
 VITE_COGNITO_DOMAIN=https://your-domain.auth.region.amazoncognito.com
 VITE_CLIENT_ID=your_cognito_app_client_id
-3. Run locally
-Bashnpm run dev
-4. Build for production
-Bashnpm run build
 
-Project Structure
+### 3. Run locally
+Bashnpm run dev
+
+### 4. Build for production
+npm run build
+
+### Project Structure
 
 src/pages/ — Route-level components
 src/components/ — Reusable UI elements
@@ -99,7 +102,7 @@ src/contexts/ — React context for auth/session
 src/lib/ — Cognito configuration helpers
 
 
-Portfolio Highlights
+### Portfolio Highlights
 
 Implemented realistic multi-tenant SaaS patterns with team/personal scopes
 Handled complex auth and authorization flows across frontend and backend
@@ -107,7 +110,7 @@ Focused on clean code, separation of concerns, and production-like error handlin
 Stayed within AWS Free Tier limits through serverless design
 
 
-Future Enhancements
+### Future Enhancements
 
 Infrastructure as Code (Terraform / CloudFormation)
 CI/CD pipeline with GitHub Actions
@@ -115,7 +118,7 @@ Real-time features with AWS AppSync / WebSockets
 Advanced monitoring dashboards and automated testing
 
 
-Author
+### Author
 Built by William Buechele as a portfolio project to demonstrate practical AWS SaaS cloud engineering skills.
 github.com/fredly11 | https://www.linkedin.com/in/william-buechele/
 
